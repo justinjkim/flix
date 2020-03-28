@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Flix</title>
+    <title>Flix App</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,6 +10,16 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <h1>Flix</h1>
+    </header>
+    
+    <div class="content">
+      <%= yield %>
+    </div>
+
+    <footer>
+      Copyright by Justin Kim <%= Time.now.year %>
+    </footer>
   </body>
 </html>
