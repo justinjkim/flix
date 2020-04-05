@@ -5,6 +5,9 @@
         <%= link_to movie.title, movie %>
       </h2>
       <h3>
+        Released on: <%= released_date(movie) %>
+      </h3>
+      <h3>
         <%= total_gross(movie) %>
       </h3>
       <p>
