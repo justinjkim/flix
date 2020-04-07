@@ -1,8 +1,18 @@
   <div class="details">
     <h1><%= @movie.title %></h1>
+    <div class="image">
+      <%= image_tag @movie.image_file_name %>
+    </div>
     <h2>
       <%= year_of(@movie) %> &bull; <%= @movie.rating %>
     </h2>
+
+    <h3>
+      Director: <%= @movie.director %>
+    </h3>
+    <p>
+      Movie length: <%= @movie.duration %>
+    </p>
     <p>
       <%= @movie.description %>
     </p>

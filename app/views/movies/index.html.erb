@@ -1,9 +1,15 @@
 <% @movies.each do |movie| %>
   <section class="movie">
+    <div class="image">
+      <%= image_tag movie.image_file_name %>
+    </div>
     <div class="summary">
       <h2>
         <%= link_to movie.title, movie %>
       </h2>
+      <h3>
+        Director: <%= movie.director %>
+      </h3>
       <h3>
         Released on: <%= released_date(movie) %>
       </h3>
