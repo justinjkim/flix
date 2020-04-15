@@ -1,5 +1,7 @@
 class Movie < ApplicationRecord
 
+  has_many :reviews, dependent: :destroy
+
   validates :title, :released_on, :duration, presence: true
   validates :description, length: { minimum: 25 }
   validates :total_gross, numericality: { greater_than_or_equal_to: 0 }
