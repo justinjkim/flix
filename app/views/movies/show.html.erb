@@ -8,6 +8,7 @@
     </h2>
 
     <div class="reviews">
+      <p>Average rating: <%= average_stars(@movie) %></p>
       <%= link_to pluralize(@movie.reviews.count, "reviews"), movie_reviews_path(@movie) %>
     </div>
 
