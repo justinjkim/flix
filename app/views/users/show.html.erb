@@ -1,6 +1,7 @@
 <section class="user">
   <h1><%= @user.name %></h1>
   <h2><%= mail_to(@user.email) %></h2>
+  <p>Username: <%= show_username %></p>
   <p>Member since <%= @user.created_at.strftime("%B %Y") %></p>
   <div class="actions">
     <%= link_to 'Edit Account', edit_user_path(@user), class: "button edit" %>
