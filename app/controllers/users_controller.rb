@@ -46,9 +46,7 @@ class UsersController < ApplicationController
 
   def require_correct_user
     @user = User.find(params[:id]) # this @user gets called for edit, update, destroy actions
-    unless current_user == @user
-      redirect_to movies_url # redirect if user is not signed in
-    end
+    redirect_to movies_url unless current_user?(@user)
   end
 
   def user_params
