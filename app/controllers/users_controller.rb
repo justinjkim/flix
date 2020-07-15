@@ -37,7 +37,7 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     @user.destroy
-    session[:user_id] = nil
+    session[:user_id] = nil # need this line, otherwise app raises an exception when you delete an account, because we deleted the :user_id key, reference current_user method
     redirect_to movies_url, alert: "Account was deleted!"
   end
 
