@@ -1,4 +1,7 @@
 class MoviesController < ApplicationController
+  before_action :require_signin, except: [:index, :show]
+  before_action :require_admin, except: [:index, :show] # require admin to edit, create, delete
+
   def index
     @movies = Movie.released
   end
