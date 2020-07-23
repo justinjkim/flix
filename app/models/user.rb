@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_many :reviews, dependent: :destroy # establish one-many relationship with reviews
+
   has_secure_password
 
   validates :name, presence: true
