@@ -12,7 +12,7 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    @review = @movie.reviews.new
+    @review = @movie.reviews.new(review_params)
     @review.user = current_user # associate current_user to review before saving; require_signin makes sure current_user exists
 
     @review.update(review_params)
