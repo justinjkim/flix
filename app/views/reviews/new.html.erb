@@ -2,8 +2,7 @@
 
   <%= render "shared/errors", object: @review %>
 
-  <%= f.label :name %>
-  <%= f.text_field :name, autofocus: true %>
+  <%# removed :name field since reviews will be associated to user through user_id %>
 
   <%= f.label :stars %>
   <% Review::STARS.each do |star| %>
