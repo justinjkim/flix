@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
 
   before_action :require_signin, except: [:new, :create] # require_signin defined in application_controller
-  before_action :require_correct_user, only: [:edit, :update, :destroy]
+  before_action :require_correct_user, only: [:edit, :update]
+  before_action :require_admin, only: [:destroy]
 
   def index
     @users = User.all
@@ -37,15 +38,16 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    @user = User.find(params[:id]) # need this line, since "before_action :require_correct_user" doesn't run for this anymore
     @user.destroy
     session[:user_id] = nil # need this line, otherwise app raises an exception when you delete an account, because we deleted the :user_id key, reference current_user method
-    redirect_to movies_url, alert: "Account was deleted!"
+    redirect_to root_url, alert: "Account was deleted!"
   end
 
   private
 
   def require_correct_user
-    @user = User.find(params[:id]) # this @user gets called for edit, update, destroy actions
+    @user = User.find(params[:id]) # this @user gets called for [:edit, :update] actions
     redirect_to movies_url unless current_user?(@user)
   end
 
