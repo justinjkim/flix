@@ -13,6 +13,7 @@ class ReviewsController < ApplicationController
 
   def create
     @review = @movie.reviews.new
+    @review.user = current_user # associate current_user to review before saving; require_signin makes sure current_user exists
 
     @review.update(review_params)
     if @review.save
@@ -29,10 +30,6 @@ class ReviewsController < ApplicationController
   end
 
   def review_params
-    params.require(:review).permit(
-      :name,
-      :stars,
-      :comment
-    )
+    params.require(:review).permit(:stars, :comment)
   end
 end
