@@ -3,6 +3,27 @@
   <h2><%= mail_to(@user.email) %></h2>
   <p>Username: <%= show_username %></p>
   <p>Member since <%= @user.created_at.strftime("%B %Y") %></p>
+
+  <% if @reviews.present? %>
+    <h3>Reviews</h3>
+    <% @reviews.each do |review| %>
+      <div class="review">
+        <div class="details">
+          <span class="title">
+            <%= link_to review.movie.title, review.movie %>
+          </span>
+          <%= render "shared/stars", percent: review.stars_as_percent %>
+          <span class="date">
+            <%= time_ago_in_words(review.created_at) %> ago
+          </span>
+          <p>
+            <%= review.comment %>
+          </p>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+
   <div class="actions">
     <% if current_user?(@user) %>
       <%= link_to 'Edit Account', edit_user_path(@user), class: "button edit" %>
