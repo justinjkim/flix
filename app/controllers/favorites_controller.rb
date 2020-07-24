@@ -9,4 +9,12 @@ class FavoritesController < ApplicationController
 
     redirect_to @movie # you need the redirect to refresh the page with the new count
   end
+
+  def destroy
+    @favorite = current_user.favorites.find(params[:id])
+    @favorite.destroy
+
+    @movie = Movie.find(params[:movie_id])
+    redirect_to movie_path(@movie)
+  end
 end

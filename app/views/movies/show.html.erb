@@ -3,7 +3,7 @@
     <%= image_tag @movie.image_file_name %>
     <% if current_user %>
       <div class="faves">
-        <%= button_to "♥️ Fave", movie_favorites_path(@movie) %> <%# you need to pass in @movie because route has :movie_id placeholder %>
+        <%= fave_or_unfave_button(@movie, @favorite) %> <%# @favorite referenced in MoviesController %>
         <div class="count">
           <%= @fans.size %> faves  <%# @fans is the same as @movie.favorites %>
         </div>
