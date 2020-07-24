@@ -176,14 +176,14 @@ Movie.create!([
 ])
 
 Genre.create!([
-  "Action",
-  "Comedy",
-  "Drama",
-  "Romance",
-  "Thriller",
-  "Fantasy",
-  "Documentary",
-  "Adventure",
-  "Animation",
-  "Sci-Fi"
+  {name: "Action"},
+  {name: "Comedy"},
+  {name: "Drama"},
+  {name: "Romance"},
+  {name: "Thriller"},
+  {name: "Fantasy"},
+  {name: "Documentary"},
+  {name: "Adventure"},
+  {name: "Animation"},
+  {name: "Sci-Fi"}
 ])
