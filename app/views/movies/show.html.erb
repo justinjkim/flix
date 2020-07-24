@@ -1,51 +1,53 @@
-<div class="details">
-  <h1><%= @movie.title %></h1>
+<section class="movie-details">
   <div class="image">
     <%= image_tag @movie.image_file_name %>
   </div>
-  <h2>
-    <%= year_of(@movie) %> &bull; <%= @movie.rating %>
-  </h2>
+  <div class="details">
+    <h1><%= @movie.title %></h1>
+    <h2>
+      <%= year_of(@movie) %> &bull; <%= @movie.rating %>
+    </h2>
 
-  <div class="reviews">
-    <p>Average rating: <%= average_stars(@movie) %></p>
-    <%= link_to pluralize(@movie.reviews.count, "reviews"), movie_reviews_path(@movie) %>
+    <div class="reviews">
+      <p>Average rating: <%= average_stars(@movie) %></p>
+      <%= link_to pluralize(@movie.reviews.count, "reviews"), movie_reviews_path(@movie) %>
+    </div>
+
+    <h3>
+      Director: <%= @movie.director %>
+    </h3>
+    <p>
+      Movie length: <%= @movie.duration %>
+    </p>
+    <p>
+      <%= @movie.description %>
+    </p>
+    <table>
+      <tr>
+        <th>Total Gross:</th>
+        <td><%= total_gross(@movie) %></td>
+      </tr>
+    </table>
+
+    <%= link_to "Write a review!", new_movie_review_path(@movie), class: "review" %>
+
+    <% if current_user_admin? %>
+      <section class="admin">
+        <%= link_to "Edit", edit_movie_path(@movie), class: "button" %>
+        <%= link_to "Delete", movie_path(@movie), class: "button", method: :delete, data: { confirm: "Are you sure?" } %>
+      </section>
+    <% end %>
   </div>
-
-  <h3>
-    Director: <%= @movie.director %>
-  </h3>
-  <p>
-    Movie length: <%= @movie.duration %>
-  </p>
-  <p>
-    <%= @movie.description %>
-  </p>
-  <table>
-    <tr>
-      <th>Total Gross:</th>
-      <td><%= total_gross(@movie) %></td>
-    </tr>
-  </table>
-
-  <%= link_to "Write a review!", new_movie_review_path(@movie), class: "review" %>
-
-  <% if current_user_admin? %>
-    <section class="admin">
-      <%= link_to "Edit", edit_movie_path(@movie), class: "button" %>
-      <%= link_to "Delete", movie_path(@movie), class: "button", method: :delete, data: { confirm: "Are you sure?" } %>
-    </section>
-  <% end %>
-</div>
-<aside>
-<% if @fans.present? %>
-    <h4>Fans</h4>
-    <ul>
-      <% @fans.each do |user| %>
-        <li>
-          <%= link_to user.name, user %>
-        </li>
-      <% end %>
-    </ul>
-  <% end %>
-</aside>
+  <aside>
+  <% if @fans.present? %>
+      <h4>Fans</h4>
+      <ul>
+        <% @fans.each do |user| %>
+          <li>
+            <%= link_to user.name, user %>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+  </aside>
+</section>
