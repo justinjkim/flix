@@ -26,5 +26,10 @@
   <%= f.label :image_file_name %>
   <%= f.text_field :image_file_name %>
 
+  <div class="checkboxes">
+    <%= f.label :genres %>
+    <%# 1st param: name of attribute, 2nd: collection of obj, 3rd: value to use for checkbox input, 4th: display text %>
+    <%= f.collection_check_boxes(:genre_ids, Genre.all, :id, :name) %>
+  </div>
   <%= f.submit %>
 <% end %>
