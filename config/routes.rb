@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :genres
   root "movies#index"
 
   resource :session, only: [:new, :create, :destroy]
