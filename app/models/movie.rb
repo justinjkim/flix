@@ -1,6 +1,6 @@
 class Movie < ApplicationRecord
 
-  has_many :reviews, dependent: :destroy
+  has_many :reviews, -> { order(created_at: :desc) }, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :fans, through: :favorites, source: :user # many to many relationship
   has_many :characterizations, dependent: :destroy
