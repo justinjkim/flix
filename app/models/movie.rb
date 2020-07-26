@@ -17,13 +17,11 @@ class Movie < ApplicationRecord
   RATINGS = %w(G PG PG-13 R NC-17)
   validates :rating, inclusion: { in: RATINGS }
 
+  # scopes dynamically define the follow as class-level methods
+  scope :released, -> { where("released_on < ?", Time.now).order(released_on: :desc)}
 
   def flop?
     total_gross < 225_000_000 ? true : false
-  end
-
-  def self.released
-    where("released_on < ?", Time.now).order(released_on: :desc)
   end
 
   def self.hits
