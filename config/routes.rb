@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     resources :favorites, only: [:create, :destroy] # nest favorites under movies so that specific movie is always specified
   end
 
-  get "movies/filter/:filter" => "movies#index"
+  get "movies/filter/:filter" => "movies#index", as: :filtered_movies
 
   resources :genres
 
