@@ -3,7 +3,14 @@ class MoviesController < ApplicationController
   before_action :require_admin, except: [:index, :show] # require admin to edit, create, delete
 
   def index
-    @movies = Movie.released
+    case params[:filter]
+    when "upcoming"
+      @movies = Movie.upcoming
+    when "recent"
+      @movie = Movie.recent(5)
+    else
+      @movies = Movie.released
+    end
   end
 
   def show
