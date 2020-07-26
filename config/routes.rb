@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :genres
   root "movies#index"
 
   resource :session, only: [:new, :create, :destroy]
@@ -10,6 +9,10 @@ Rails.application.routes.draw do
     resources :reviews
     resources :favorites, only: [:create, :destroy] # nest favorites under movies so that specific movie is always specified
   end
+
+  get "movies/filter/:filter" => "movies#index"
+
+  resources :genres
 
   resources :users
   get "signup" => "users#new"
