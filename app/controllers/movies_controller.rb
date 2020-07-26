@@ -7,7 +7,7 @@ class MoviesController < ApplicationController
     when "upcoming"
       @movies = Movie.upcoming
     when "recent"
-      @movie = Movie.recent(5)
+      @movies = Movie.recent
     else
       @movies = Movie.released
     end
