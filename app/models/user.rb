@@ -17,4 +17,6 @@ class User < ApplicationRecord
                        format: { with: /\A[A-Z0-9]+\z/i },
                        uniqueness: { case_sensitive: false }
 
+  scope :by_name, -> { order(name) }
+  scope :non_admin, -> { by_name.where(admin: false) }
 end
