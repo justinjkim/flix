@@ -19,6 +19,7 @@ class Movie < ApplicationRecord
 
   # scopes dynamically define the follow as class-level methods
   scope :released, -> { where("released_on < ?", Time.now).order(released_on: :desc)}
+  scope :upcoming, -> { where("released_on > ?", Time.now).order(released_on: :asc)}
 
   def flop?
     total_gross < 225_000_000 ? true : false
