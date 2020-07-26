@@ -69,6 +69,6 @@ class MoviesController < ApplicationController
                   :director,
                   :duration,
                   :image_file_name,
-                  :genre_ids: []) # genre_ids must be submitted as an array
+                  genre_ids: []) # genre_ids must be submitted as an array
   end
 end
