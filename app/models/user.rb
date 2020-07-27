@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  before_save :lowercase
+
   has_many :reviews, dependent: :destroy # establish one-many relationship with reviews
   has_many :favorites, dependent: :destroy
   has_many :favorite_movies, through: :favorites, source: :movie
@@ -19,4 +21,19 @@ class User < ApplicationRecord
 
   scope :by_name, -> { order(name) }
   scope :non_admin, -> { by_name.where(admin: false) }
+
+  def to_param
+    username
+  end
+
+  private
+
+  def set_username
+    self.username = username.parameterize
+  end
+
+  def lowercase
+    self.username = username.downcase # must use "self" because we're writing to this object
+    self.email = email.downcase
+  end
 end
