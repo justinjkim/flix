@@ -1,5 +1,7 @@
 class Movie < ApplicationRecord
 
+  before_save :set_slug # callback to set slug before object is saved into DB
+
   has_many :reviews, -> { order(created_at: :desc) }, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :fans, through: :favorites, source: :user # many to many relationship
@@ -35,5 +37,12 @@ class Movie < ApplicationRecord
 
   def average_stars
     reviews.average(:stars).to_s || 0.0
+  end
+
+  private
+
+  # must use "self", otherwise it creates a local variable
+  def set_slug
+    self.slug = title.parameterize
   end
 end
