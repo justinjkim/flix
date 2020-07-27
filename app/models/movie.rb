@@ -39,6 +39,11 @@ class Movie < ApplicationRecord
     reviews.average(:stars).to_s || 0.0
   end
 
+  # you don't need "self" here in method name because we are reading the "slug" attribute, not writing it
+  def to_param
+    slug
+  end
+
   private
 
   # must use "self", otherwise it creates a local variable
