@@ -1,6 +1,7 @@
 class MoviesController < ApplicationController
   before_action :require_signin, except: [:index, :show]
   before_action :require_admin, except: [:index, :show] # require admin to edit, create, delete
+  before_action :set_movie, only: [:show, :edit, :update, :destroy]
 
   def index
     case params[:filter]
@@ -18,7 +19,6 @@ class MoviesController < ApplicationController
   end
 
   def show
-    @movie = Movie.find(params[:id])
     @fans = @movie.fans
     @genres = @movie.genres
     if current_user  # current_user defined in application_controller
@@ -27,12 +27,9 @@ class MoviesController < ApplicationController
   end
 
   def edit
-    @movie = Movie.find(params[:id])
   end
 
-  def update
-    @movie = Movie.find(params[:id])
-    
+  def update    
     if @movie.update(movie_params)
       redirect_to movie_path(@movie), notice: "Movie successfully updated!"
     else
@@ -55,7 +52,6 @@ class MoviesController < ApplicationController
   end
 
   def destroy
-    @movie = Movie.find(params[:id])
     @movie.destroy
 
     redirect_to movies_path, alert: "Movie successfully deleted!"
@@ -74,5 +70,9 @@ class MoviesController < ApplicationController
                   :duration,
                   :image_file_name,
                   genre_ids: []) # genre_ids must be submitted as an array
+  end
+
+  def set_movie
+    @movie = Movie.find_by!(slug: params[:id])
   end
 end
