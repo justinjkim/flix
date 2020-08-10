@@ -1,6 +1,6 @@
 # README
 
-This is my personal Rails project, created by following along the excellent "The Pragmatic Studio" [tutorials](https://pragmaticstudio.com/). 
+This is my personal Rails project, created by following along the excellent "The Pragmatic Studio" [tutorials](https://pragmaticstudio.com/). Check it out at [powerful-citadel-75192.herokuapp.com](https://powerful-citadel-75192.herokuapp.com)!
 
 Some technical features I learned to create this app:
 * MVC architecture
