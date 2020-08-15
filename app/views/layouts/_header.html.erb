@@ -1,6 +1,6 @@
 <header>
   <nav>
-    <%= link_to image_tag('logo.png'), root_path %>
+    <%= link_to image_tag('logo.png', id: "logo"), root_path %>
     <ul class="left">
       <li><%= nav_link_to "Released", filtered_movies_path(:released) %></li>
       <li><%= nav_link_to "Upcoming", filtered_movies_path(:upcoming) %></li>
