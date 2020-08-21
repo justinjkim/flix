@@ -9,3 +9,12 @@ def movie_attributes(overrides = {})
     released_on: "2008-05-02"
   }.merge(overrides)
 end
+
+def user_attributes(overrides = {})
+  {
+    name: "Bob",
+    email: "bob@example.com",
+    username: "bobbyrocks",
+    password: "blahblahblah"
+  }
+end
